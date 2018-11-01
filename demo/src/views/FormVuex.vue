@@ -7,7 +7,18 @@
         <div class="">
             <br>
             <br>
-            <p>数据：{{_fatherData}}</p>//感谢网友 @Mr.TangHao 的纠错
+            <p>数据：{{fatherData}}</p>
+        </div>
+        <div class="">
+           <p  v-for="(val,key) in fatherData" v-bind:key="key" v-if="key==='name'">
+             姓名：{{val}}
+           </p>
+           <p  v-for="(val,key) in fatherData" v-bind:key="key" v-if="key==='age'">
+             年龄：{{val}}
+           </p>
+           <p  v-for="(val,key) in fatherData" v-bind:key="key" v-if="key==='address'">
+             地址：{{val}}
+           </p>
         </div>
     </div>
 </template>
@@ -30,9 +41,13 @@ export default {
     };
   },
   computed: {//挂载完成后
-    _fatherData() {//获取全局 store 仓库中的 formDatas 值
-      // 读取store里面的值，这里是重点
-      return this.$store.state.formDatas;
+    fatherData:{
+      get:function(){
+        //获取全局 store 仓库中的 formDatas 值
+        //读取store里面的值，这里是重点
+        let obj=this.$store.state.formDatas;
+        return obj;
+      }
     }
   }
 };
